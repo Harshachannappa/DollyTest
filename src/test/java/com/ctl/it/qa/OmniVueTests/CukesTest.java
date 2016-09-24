@@ -22,11 +22,12 @@ public class CukesTest {
 		STAFEnvironment.registerEnvironment(CukesTest.class);
 		Steps.initialize("omnivue.xml");
 	}
-} */
+} */ //TC44383,,,US43123-TC24409
 
-@TestEnvironment(Environment.E2E)
+@TestEnvironment(Environment.INT1)
 @RunWith(CucumberWithSerenity.class)
-@CucumberOptions(features="src/test/resources/features", tags={"@TC44383"})
+//@CucumberOptions(features="src/test/resources/features", tags={"@US62403-TC54941-TC54947-TC54962-TC55177 @reg31"})TC55531 US43123-TC25113
+@CucumberOptions(features="src/test/resources/features", tags={"@TC39203"})
 public class CukesTest {
 	
 	@BeforeClass

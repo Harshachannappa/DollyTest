@@ -12,6 +12,7 @@ import com.ctl.it.qa.omnivue.tools.pages.common.OVSearchDevicePage;
 import com.ctl.it.qa.omnivue.tools.pages.common.OVServiceDetailsPage;
 import com.ctl.it.qa.omnivue.tools.steps.user.UserSteps;
 import com.ctl.it.qa.staf.Page;
+import com.ctl.it.qa.staf.xml.reader.IntDataContainer;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -59,7 +60,7 @@ import cucumber.api.java.en.Then;
 	
 	// ******************** Methods *****************************
 	
-	@Given("^I am in omnivue url$")
+	@Given("^I am in omnivue url$")		//Need to be removed
 	
 	public void I_am_in_omnivue_url() {
 		
@@ -69,11 +70,20 @@ import cucumber.api.java.en.Then;
 		loginpage.shouldExist(loginpage);		
 	}
 		
-	@And("^I log in as a \"([^\"]*)\" user$")
+	@And("^I log in as a \"([^\"]*)\" user$")		//Need to be removed
 	
 	public void I_log_in_as_a_user(String userType) {
-		
 		enduser.logs_in_as_a(userType);
+	}
+	
+	@Given("^I am logged in as a \"([^\"]*)\" user in Omnivue$")		//19/7/2016--New changes
+	
+	public void logging_in_user(String userType){
+		String url = Page.envData.getFieldValue("omnivue-url");
+		System.out.println("url value is" + url);
+		enduser.is_in_omnivue_login_page(url);
+		loginpage.shouldExist(loginpage);
+		enduser.logs_in_as_a("Admin");			//Need to configure the Usertype in XML---21/7/2016
 	}
 	
 	//Moved to OSIPScreen

@@ -22,6 +22,7 @@ import com.ctl.it.qa.omnivue.tools.steps.user.UserSteps;
 import com.ctl.it.qa.staf.xml.reader.IntDataContainer;
 
 import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import cucumber.api.java.en.And;
 import net.serenitybdd.core.annotations.findby.By;
 import net.thucydides.core.annotations.Steps;
@@ -41,140 +42,63 @@ public class OVCreateStepDefinition {
 	
 
 	@Steps
-	UserSteps enduser;
-	@And("^I go to \"([^\"]*)\" create type and select \"([^\"]*)\" type$")
-		public void selectFormType(String type,String subtype) {
-		//fillMandatoryFields(actvtnpage,get_data_for_page(actvtnpage),type);
-		//enduser.selectType(type,subtype);
-		
-		try {
-			System.out.println(type);
-			System.out.println(subtype);
-			//System.out.println(tech);
-			actvtnpage.ddl_createType.selectByVisibleText(type);
-			Thread.sleep(1000);
-			Thread.sleep(1000);
-			switch(type){
-					case "Inventory": 	actvtnpage.ddl_CreateinvntryType.selectByVisibleText(subtype);
-										break;
-					case "Network Build": 	actvtnpage.ddl_CreateNetworkType.selectByVisibleText(subtype);
-											break;
-				}	
-			Thread.sleep(1000);
-			//actvtnpage.ddl_CreateinvntryType.click();
-			//Thread.sleep(5000);
-			//selectByVisibleText(subtype).click();
-			//actvtnpage.ddl_createinventType(subtype);
-			//Thread.sleep(1000);
-			//actvtnpage.click_Technologytype(tech);
-			//Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
-	}
+	UserSteps enduser;		
 	
-	@And("^I Select \"([^\"]*)\" as Filter By value$")
-	public void selectFilterby(String tech){
-		try {
-			actvtnpage.click_Technologytype(tech);
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}	
-	}
-		
 	
-	@Then("Select the technology as \"([^\"]*)\" with Device Type as \"([^\"]*)\" with Sub-Type as \"([^\"]*)\"$")
-	public void createFormpage(String techtype,String devtype,String devsubtype){
-		try {
-			System.out.println(techtype);
-			System.out.println(devtype);
-			System.out.println(devsubtype);
-		actvtnpage.ddl_techType.selectByVisibleText(techtype);
-		Thread.sleep(1000);
-		actvtnpage.ddl_devType.selectByVisibleText(devtype);
-		Thread.sleep(1000);
-		actvtnpage.ddl_devsubType.selectByVisibleText(devsubtype);
-		Thread.sleep(1000);
-		actvtnpage.btn_create.click();
-		Thread.sleep(10000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	@And("Search for the  location \"([^\"]*)\" Building CLLI$")
-	public void locationclli(String cllitype) throws InterruptedException{
-		Thread.sleep(5000);
-		devcreatepage.btn_locationLookup.click();
-		System.out.println(cllitype);
-		Thread.sleep(5000);
-		//loginPage.waitForChildWindowToAppear(1);
-		//System.out.println(loginPage.getAlert());
-		//loginPage.switchToFrame("omnivue", 5);
-		//loginPage.switchToFrame(frameName, waitTime);
-		//enduser.fill_fields(cllitype);
-		//Thread.sleep(5000);
-		devcreatepage.btn_lookUp.click();
-		Thread.sleep(5000);
-	}
-	
-	@And("^I fill the mandatory fields with \"([^\"]*)\" data$")
+	@And("^I fill the mandatory fields with \"([^\"]*)\" data$") //Fill the Device create form page details
 	public void fillmandatoryfield(String testdata){
 		enduser.fillmandatoryfield(testdata);		
 	}
 	
-	@Then("^I validated \"([^\"]*)\" technology and device type$")
-	public void i_validated_technology_and_device_type(String techType) throws Throwable 
-	{
-		System.out.println(techType);
-		actvtnpage.ddl_techType.selectByVisibleText(techType);
-		String[] actualDeviceType = {"","Fiber Distribution Hub","Fiber Distribution Panel","Fiber Multiport Service Terminal","Fiber Splitter"};
-		 WebElement dropdown = enduser.getDriver().findElement(By.xpath("//label[text()='Device Type']/following-sibling::select"));
-		 ArrayList<String> ExpDeviceType = null;
-		 Select select = new Select(dropdown);  
-
-		 List<WebElement> options = select.getOptions();  
-		 System.out.println(options.size());
-		 
-		 for(int j=0;j<=options.size()-1;j++)  
-		 {  
-			 //System.out.println("..............."+options.get(j).getText());
-		  boolean match = false;
-		  for (int i=0; i<actualDeviceType.length; i++){
-			 
-		      if (options.get(j).getText().equals(actualDeviceType[i]))
-		    		  {
-		        match = true;
-		        System.out.println(options.get(j).getText()+"==="+actualDeviceType[i]);
-		    	  
-		      }
-		    }
-		   
-		 // Assert.assertTrue(match);
-		 }
-		 System.out.println("successfully validated");
+	
+	//created By Dolly
+	@And("^I edit the enabled fields with \"([^\"]*)\" data in Device Detail Tab$")
+	public void fillenabledfield(String testdata){
+		enduser.fillenabledfield(testdata);		
 	}
 	
-	@Then("Select the Role as \"([^\"]*)\" with Device Type as \"([^\"]*)\" with Sub-Type as \"([^\"]*)\"$")
-	public void createroleform(String role,String devtype,String devsubtype){
-		try {
-		actvtnpage.ddl_role.selectByVisibleText(role);
-		Thread.sleep(1000);
-		actvtnpage.ddl_devType.selectByVisibleText(devtype);
-		Thread.sleep(1000);
-		actvtnpage.ddl_devsubType.selectByVisibleText(devsubtype);
-		Thread.sleep(1000);
-		actvtnpage.btn_create.click();
-		Thread.sleep(10000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	
+	//created By Dolly
+	@And("^I edit the enabled fields with \"([^\"]*)\" data in Networking Details Tab$") //Fill the Device create form page details
+	public void networkDetailUpdatefield(String testdata){
+		enduser.fill_fields(testdata);
 	}
+	
+	//created By Dolly
+	@And("^I clicked Networking Details Tab$") //Fill the Device create form page details
+	public void clickedNetworkingDetailsTab(){
+		enduser.clickedNetworkingDetailsTab();		
+	}
+	
+	//created By Dolly
+	@And("^I clicked the save button in Networking Details Tab$") //Fill the Device create form page details
+	public void saveNetworkingDetails() throws InterruptedException{
+		enduser.saveNetworkingDetails();		
+	}
+	
+	
+	//dolly
+	@And("^I clicked the save button in Device Details Tab$") //Fill the Device create form page details
+	public void saveDeviceDetails() throws InterruptedException{
+		enduser.saveDeviceDetails();		
+	}
+	
+	
+	@And("^Fill all the mandatory fields with ([^\"]*) data$")
+	public void fillmandatoryfield_passive(String testdata){
+		enduser.fillmandatoryfield(testdata);		
+	}
+	
+	@And("^Select subscriber & Equipment role with \"([^\"]*)\" data$") //Select subscriber & equipment role in create form page
+	public void select_subcriber_equipmentrole(String testdata) throws InterruptedException{
+		enduser.subcriber_equipment(testdata);
+	}
+	
+	@And("^I click on Create button$")  //Create Button Click on Create Form for Inventory, Subscriber
+	public void i_click_create_button(){
+		enduser.click_createbutton();
+		}
+
 	
 	@Then("^I validated \"([^\"]*)\" radio button and \"([^\"]*)\" radio button$")
 	public void i_validated_radio_button_and_radio_button(String radioBtn1, String radioBtn2) throws Throwable {
@@ -183,15 +107,9 @@ public class OVCreateStepDefinition {
 		}else{
 		System.out.println("Element is InVisible");
 		}*/
-		devcreatepage.IsRadioButtonPresent();
+		//devcreatepage.IsRadioButtonPresent();				//check why is it throughing error---17/8/2016
 	}
-	
-	@Then("^Validate attributes in \"([^\"]*)\" device details page$")
-	public void validate_atributes_of_device_details_page(String devtype)throws Throwable {
-		Thread.sleep(5000);
-		System.out.println(devcreatepage.validatingAtributesOfPassiveCreatePage(devtype));	
-		 }
-	
+		
 	@Then("^Validate attributes in order details page$")
 	public void validate_order_attributes() {
 		enduser.order_attribute();
@@ -200,48 +118,39 @@ public class OVCreateStepDefinition {
 	@Then("^Validate the device name in search page$")
 	public void validate_the_device_name_in_search_page() throws Throwable {
 	    enduser.searched_device_is(searchdevicepage.tbx_deviceName.getText());
-	}
+	}	
 	
-	@Then("^Validate \"([^\"]*)\" radio button in device create page$")
-	public void validate_radio_button_in_device_create_page(String radioButton) throws Throwable {
-		  
-		if (devcreatepage.isRadioButtonSelected(radioButton)) 
-		     {
-				System.out.println("pass");
-			}
-		     else throw new Error("not seclected");
-		}
+	@And("^I click on the Launch Create form button$")  //Launching the subcribers create form
+	public void i_click_launch_create_form(){
+		enduser.click_createlaunchformbutton();
+		
+	}		
 	
-	@And("^Validate Location CLLI for \"([^\"]*)\"$")
-	public void validate_Location_CLLI_is_optional_for(String arg1) throws Throwable {
-		if (!(devcreatepage.isLocationCLLIMandatory())) {
-			System.out.println("location clli.........."+devcreatepage.isLocationCLLIMandatory());
-		}
-		 else throw new Error("it a mandatory filed for Ethernet");
-	}
-	
+
 	// Network Build Device Creation--Sairam
-		@And("^I Entered Serving Wire Center CLLI as By value \"([^\"]*)\" and Engineering Order Id as By value \"([^\"]*)\"$")
-		public void Enter_WirecenterCLLI_and_EngOrdId(String Value, String id) throws Throwable{
-			devcreatepage.tbx_SWCCLLI.sendKeys(Value);
-	             devcreatepage.tbx_EngOrdId.sendKeys(id);
-			Thread.sleep(5000);
-			actvtnpage.btn_NB_create.click();
-		}
 		
-		@And("^I click on the Create form button$")
-		public void create_form_from_create_tab(){
-			
-		}
+	@When("^I select \"([^\"]*)\" device$")
+	public void gpon_netwrkbuild_createform(String gpondevice){
+		enduser.gpon_ntwrk_deviceselecting(gpondevice);
 		
-		@And("^I click on Create button$")
-		public void i_click_create_button(){
-				enduser.click_createbutton();
-		}
+	}
+	
+	@Then("^I fill the fields present in the network build$")
+	public void gpon_field_fill(){
+		enduser.gpon_fill_field();
+	}
+	
+	//created by Dolly
+	@And("^I clicked the Edit button in Device Detail Page$")
+	public void edit_Button_DeviceDetailPage() throws InterruptedException{
+		enduser.edit_Button_DeviceDetailPage();
+	}
 		
-		@And("^I click on the Launch Create form button$")
-		public void i_click_launch_create_form(){
-			enduser.click_createlaunchformbutton();
-			
-		}
+	//created By Dolly
+	@And("^I clicked the Edit Device Details button in Networking Details Page$")
+	public void edit_Button_NetworkingDetailPage() throws InterruptedException{
+		enduser.edit_Button_NetworkingDetailPage();
+	}
+		
+		
 }
