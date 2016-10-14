@@ -7,7 +7,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.And;
 import net.thucydides.core.annotations.Steps;
 
-public class OSIPScreenStepDefinition {
+public class OVSearchStepDefinition {
 	
 	@Steps
 	UserSteps enduser;
@@ -116,8 +116,7 @@ public class OSIPScreenStepDefinition {
 	
 	@And("^I go to \"([^\"]*)\" type and select \"([^\"]*)\"$")  //Selecting Type & sub-Type in Create form
 	public void selectFormType(String type,String subtype) {
-	//fillMandatoryFields(actvtnpage,get_data_for_page(actvtnpage),type);
-	//enduser.selectType(type,subtype);
+	
 	enduser.selectFormType(type,subtype);
 	}
 	
@@ -179,6 +178,13 @@ public class OSIPScreenStepDefinition {
 		enduser.i_Select_for_the_drop_down_Service_Type_us(service_type);
 	}
 	
+	@And("^I clicked Networking Details Tab$") //Fill the Device create form page details
+	public void clickedNetworkingDetailsTab(){
+		enduser.clickedNetworkingDetailsTab();		
+	}
+	
+	
+	
 	/* ******************Network Create Form ************ */
 	
 	@And("^I Launch the Network form with \"([^\"]*)\"$")
@@ -194,6 +200,20 @@ public class OSIPScreenStepDefinition {
 		enduser.attri_field();
 	}
 	
+//---------------------------------------------------------MOHIT---------------------------------------------
 	
-
+ 	  @And("^I verified \"([^\"]*)\" from the Search type dropdown$")
+ 	  public void verifySearchSection(String sectionValue){
+ 		  enduser.verifySearchSection(sectionValue);
+ 	  }
+ 	  
+ 	 @And("^I verified \"([^\"]*)\" from the Inventory type dropdown$")
+	  public void verifyInventorySection(String sectionValue){
+		  enduser.verifyInventorySection(sectionValue);
+	  }
+//----------------------------------Dolly------------------------------------
+ 	@And("^I Select Device Role as \"([^\"]*)\" with Device Name as \"([^\"]*)\"$")
+ 	public void i_Select_Device_Role_as_with_Device_Name_as(String devRole, String devName) {
+ 		enduser.createDeviceRole_Name(devRole,devName);
+ 	}
 }

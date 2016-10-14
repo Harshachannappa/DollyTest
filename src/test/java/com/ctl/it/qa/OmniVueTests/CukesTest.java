@@ -12,21 +12,9 @@ import com.ctl.it.qa.staf.TestEnvironment;
 
 import cucumber.api.CucumberOptions;
 
-/* @TestEnvironment(Environment.E2E)
+@TestEnvironment(Environment.ITV1)
 @RunWith(CucumberWithSerenity.class)
-@CucumberOptions(features="src/test/resources/features", tags= {"@Login"})
-public class CukesTest {
-	
-	@BeforeClass
-	public static void setEnvironment() {
-		STAFEnvironment.registerEnvironment(CukesTest.class);
-		Steps.initialize("omnivue.xml");
-	}
-} */ //TC44383,,,US43123-TC24409
-
-@TestEnvironment(Environment.E2E)
-@RunWith(CucumberWithSerenity.class)
-@CucumberOptions(features="src/test/resources/features", tags={"@RegDemo"})
+@CucumberOptions(features="src/test/resources/features", tags={"@Sanity"})
 public class CukesTest {
 	
 	@BeforeClass

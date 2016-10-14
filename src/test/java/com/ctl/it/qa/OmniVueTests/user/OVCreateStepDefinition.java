@@ -11,6 +11,7 @@ import com.ctl.it.qa.omnivue.tools.pages.common.OVActivationPage;
 import com.ctl.it.qa.omnivue.tools.pages.common.OVAssociatedModServicesPage;
 import com.ctl.it.qa.omnivue.tools.pages.common.OVAssociatedServicesPage;
 import com.ctl.it.qa.omnivue.tools.pages.common.OVCreateDevicePage;
+import com.ctl.it.qa.omnivue.tools.pages.common.OVCreateServicePage;
 import com.ctl.it.qa.omnivue.tools.pages.common.OVDeviceLookupPage;
 import com.ctl.it.qa.omnivue.tools.pages.common.OVHomepage;
 import com.ctl.it.qa.omnivue.tools.pages.common.OVLoginPage;
@@ -39,6 +40,7 @@ public class OVCreateStepDefinition {
 	OVModDeviceLookupPage moddevicelookuppage;
 	OVAssociatedModServicesPage modassocservicespage;
 	OVCreateDevicePage devcreatepage;
+	OVCreateServicePage ovg; 
 	
 
 	@Steps
@@ -98,6 +100,48 @@ public class OVCreateStepDefinition {
 		
 	}	
 	
+	//New Updates---9/23/2016
+	@And("^I clicked the \"([^\"]*)\" button in Device Detail Page$")
+	public void edit_Button_DeviceDetailPage(String button) throws InterruptedException{
+		enduser.edit_Button_DeviceDetailPage(button);
+	}
+	
+	@And("^I edit the enabled fields with \"([^\"]*)\" data in Device Detail Tab$")
+	public void fillenabledfield(String testdata){
+		enduser.fillenabledfield(testdata);		
+	}
+	
+	@And("^I clicked the save button in Networking Details Tab$") 
+	public void saveNetworkingDetails() throws InterruptedException{
+		enduser.saveNetworkingDetails();		
+	}
+	
+	
+	@And("^I clicked the \"([^\"]*)\" button in Networking Details Tab$")
+	public void edit_Button_NetworkingDetailPage(String button) throws InterruptedException{
+		enduser.edit_Button_NetworkingDetailPage(button);
+	}
+	
+	@And("^I edit the enabled fields with \"([^\"]*)\" data in Networking Details Tab$") //Fill the Device create form page details
+	public void networkDetailUpdatefield(String testdata) throws InterruptedException{
+		enduser.fill_fields(testdata);
+	}
+	
+	@And("^I fill the madatory fields for subscriber with \"([^\"]*)\" data$")
+	 public void fillSubscriberFields(String data) throws InterruptedException{
+		 enduser.fillSubscriberFields(data);
+	 }
+	
+	@And("^I edit the enabled fields with \"([^\"]*)\" data$")
+	public void editEnableField(String testdata) throws InterruptedException{
+		enduser.fill_fields(testdata);
+	}
+	
+	@And("^I click on wirecenterCLLI search button$")
+	 public void clickwirecenterCLLISearchButton(){
+		 devcreatepage.btn_wireclli.click();
+	 }
+	//End of new change--9/23
 
 	// Network Build Device Creation--Sairam
 		
@@ -111,7 +155,40 @@ public class OVCreateStepDefinition {
 	public void gpon_field_fill(){
 		enduser.gpon_fill_field();
 	}
-				
-		
+			
+	//--------------------------Dolly-------------------------------------
+	  @And("^I verified \"([^\"]*)\" from the Create Type dropdown$")
+ 	  public void verifyCreateSection(String sectionValue){
+ 		  enduser.verifyCreateSection(sectionValue);
+ 	  }
+	  
+	  @And("^I verified \"([^\"]*)\" from the Inventory Type dropdown$")
+ 	  public void verifyInventoryType(String sectionValue){
+ 		  enduser.verifyInventoryType(sectionValue);
+ 	  }
+	  
+		@And("^I Select Topology Type as \"([^\"]*)\" with State as \"([^\"]*)\"$")
+		public void selectTopologyType_State(String topologyType, String state) {
+			enduser.selectTopologyType_State(topologyType,state);
+		}
+	  
+	  
+//-------------------------------------MOHIT--------------------------------------------------
+	//TC54963
+	@And("^I clicked the \"([^\"]*)\" button in \"([^\"]*)\" Detail Page$")
+	public void edit_Button_TopologyDetailPage(String button, String relatedTabs) throws InterruptedException{
+		enduser.edit_Button_TopologyDetailPage(button);
+	}
+	
+	
+//-------------------------------------ANKIT--------------------------------------------------
+	//TC39243
+	@Then("^I verify all The Fields depending on selected value from SPEC Code dropdown$")
+	public void i_verify_all_The_Fields_depending_on_selected_value_from_SPEC_Code_dropdown() throws InterruptedException 
+	{
+		//Thread.sleep(5000);
+		//enduser.click_createlaunchformbutton();
+   ovg.verifyfield();
+	} 
 		
 }
