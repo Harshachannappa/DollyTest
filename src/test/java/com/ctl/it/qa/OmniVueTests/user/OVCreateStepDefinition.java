@@ -1,5 +1,6 @@
 package com.ctl.it.qa.OmniVueTests.user;
 
+import java.awt.AWTException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,6 +53,8 @@ public class OVCreateStepDefinition {
 		enduser.fillmandatoryfield(testdata);		
 	}
 	
+
+	
 	@And("^Fill all the mandatory fields with ([^\"]*) data$")
 	public void fillmandatoryfield_passive(String testdata){
 		enduser.fillmandatoryfield(testdata);		
@@ -65,6 +68,11 @@ public class OVCreateStepDefinition {
 	@And("^I click on Create button$")  //Create Button Click on Create Form for Inventory, Subscriber
 	public void i_click_create_button(){
 		enduser.click_createbutton();
+		}
+	
+	@And("^I verified the alert message$")  
+	public void i_verified_the_alert_message(){
+		enduser.verifiedAlertMessage();
 		}
 
 	
@@ -95,7 +103,7 @@ public class OVCreateStepDefinition {
 	}	
 	
 	@And("^I Update values of \"([^\"]*)\"$")
-	public void i_update_value_of(String fields) throws InterruptedException{
+	public void i_update_value_of(String fields) throws InterruptedException, AWTException{
 		enduser.fill_fields(fields);
 		
 	}	
@@ -123,7 +131,7 @@ public class OVCreateStepDefinition {
 	}
 	
 	@And("^I edit the enabled fields with \"([^\"]*)\" data in Networking Details Tab$") //Fill the Device create form page details
-	public void networkDetailUpdatefield(String testdata) throws InterruptedException{
+	public void networkDetailUpdatefield(String testdata) throws InterruptedException, AWTException{
 		enduser.fill_fields(testdata);
 	}
 	
@@ -133,7 +141,7 @@ public class OVCreateStepDefinition {
 	 }
 	
 	@And("^I edit the enabled fields with \"([^\"]*)\" data$")
-	public void editEnableField(String testdata) throws InterruptedException{
+	public void editEnableField(String testdata) throws InterruptedException, AWTException{
 		enduser.fill_fields(testdata);
 	}
 	
@@ -162,6 +170,23 @@ public class OVCreateStepDefinition {
  		  enduser.verifyCreateSection(sectionValue);
  	  }
 	  
+
+
+	// ----Dolly
+	@And("^I verified \"([^\"]*)\" is displayed in the \"([^\"]*)\" dropdown for search functionality$")
+	public void verifySearchAttributeDisplay(String value, String attribute) {
+
+		enduser.verifySearchAttributeDisplay(value, attribute);
+	}
+	
+	// ----Dolly
+	@And("^I verified \"([^\"]*)\" is displayed in the \"([^\"]*)\" dropdown for create functionality$")
+	public void verifyCreateAttributeDisplay(String value, String attribute) {
+
+		enduser.verifyCreateAttributeDisplay(value, attribute);
+	}
+	
+	
 	  @And("^I verified \"([^\"]*)\" from the Inventory Type dropdown$")
  	  public void verifyInventoryType(String sectionValue){
  		  enduser.verifyInventoryType(sectionValue);
@@ -190,5 +215,116 @@ public class OVCreateStepDefinition {
 		//enduser.click_createlaunchformbutton();
    ovg.verifyfield();
 	} 
-		
+
+//-----------------------------------------------MOHIT NEW-------------------------------------------------
+			//TC39261
+			@And("^I enter the order number with \"([^\"]*)\" data and click$")
+			public void orderNumberField(String testdata) throws InterruptedException, AWTException{
+				enduser.fill_fields(testdata);
+				enduser.clickSearchOrder();
+			}
+			
+			/*@And("I select \"([^\"]*)\" from circuit type$")
+		 	 public void selectCircuitType(String circuitType){
+		 		 enduser.selectCircuitType(circuitType);
+		 	 } */
+		//TC55681
+					@And("I fill all mandatory fields with \"([^\"]*)\" and fill start and end device with \"([^\"]*)\" and \"([^\"]*)\"$")
+					public void fillallFields(String field, String startDevice, String endDevice) throws InterruptedException, AWTException{
+						enduser.fillallfields(field, startDevice, endDevice);
+					}
+					
+				    @And("I take the value of circuit Name$")
+				    public void circuitName() throws InterruptedException {
+				    	enduser.circuitName();
+				    }
+				    
+				    @And("I fill the name field$")
+				    public void fillNameField(){
+				    	enduser.fillNameField();
+				    } 			
+
+		//TC39235
+				    @And("I fill the all mandatory fields for ENNI Link with \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" data$")
+				    public void fillAllFields(String data1, String SubscriberData, String deviceData) throws InterruptedException, AWTException{
+				    enduser.fill_fields(data1);	
+				    enduser.fillSubscriberFieldsForService(SubscriberData);
+				    enduser.fillDeviceFieldsForService(deviceData);
+				    
+				    	
+				    }
+
+				    //TC39194
+			    	@And("^I fill the mandatory fields with \"([^\"]*)\" data to create service$") //Fill the Device create form page details
+				    	public void fillmandatoryfieldtoCreateService(String testdata){
+				    		enduser.fillmandatoryfieldtoCreateService(testdata);		
+				    	} 
+
+			    	
+			    	//TC39191
+			    	@And("I fill name field as \"([^\"]*)\" and \"([^\"]*)\"$")
+			    	public void fillName(String page, String field){
+			    		enduser.fillName(page, field);
+			    	}
+			    	
+			    	@And("I fill all mandatory fields with \"([^\"]*)\" and fill device Name as \"([^\"]*)\" and object as \"([^\"]*)\"$")
+			    	public void fillallFieldsForNumber(String field, String deviceName, String object) throws InterruptedException, AWTException{
+			    		enduser.fillallFieldsForNumber(field,deviceName, object);
+			    	} 
+			
+			    	//tc39190
+			    	@And("I fill all mandatory fields with \"([^\"]*)\" and fill start and end device with \"([^\"]*)\" and \"([^\"]*)\" for Link$")
+					public void fillallFieldsForLink(String field, String startDevice, String endDevice) throws InterruptedException, AWTException{
+						enduser.fillallfieldsForLink(field, startDevice, endDevice);
+					} 
+			    	
+			    	@When("^I verify the launch create functionality$")
+			    	public void i_verify_the_launch_create_functionality() throws Throwable {
+			    		
+			    		enduser.verify_launchcreate();
+			    	}
+			
+			
+			    	@And("^I verify Add individual address button$")
+			    	public void i_verify_Add_individual_address_button() throws Throwable {
+			    		
+			    		
+			    		enduser.verify_AddIndividual();
+			    	}
+			    	@And("^I verify mandatory field from \"([^\"]*)\"$")
+			    	public void i_verify_mandatory_field_from(String arg1) throws Throwable {
+			    		enduser.verify_mandatoryfield(arg1);
+			    		
+			    	} 
+			    	//TC55687
+			    	@And("I fill all mandatory fields with \"([^\"]*)\"$")
+			    	public void fillAllFieldFOrHSI(String field) throws InterruptedException, AWTException{
+			    		enduser.fillAllFieldFOrHSI(field);
+			    	}
+			
+			    	@And("I clicked the \"([^\"]*)\" button in HSI Detail Page$")
+			    	public void ClickSaveButton(String button) throws InterruptedException{
+			    		enduser.ClickSaveButton(button);
+			    	}
+			
+			    	@And("I click on close tab buttons of all open HSI tab$")
+			    	public void closeWin() throws InterruptedException{
+			    		enduser.closeWin();
+			    	} 
+			
+			    	@And("^I get the Device name$")
+			    	public void i_get_the_Device_name() throws Throwable {
+			    		enduser.getdevicename();
+			    	}
+			    	@And("^I click on topology tab$")
+			    	public void i_click_on_topology_tab() throws Throwable {
+			    		enduser.click_topologytab();
+			    	} 
+			
+			
+			
+			
+			
+			
+			
 }

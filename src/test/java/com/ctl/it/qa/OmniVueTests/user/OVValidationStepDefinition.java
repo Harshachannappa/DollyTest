@@ -22,6 +22,13 @@ public class OVValidationStepDefinition {
 		enduser.Usability_validation("MEF EVC",service);
 	}*/
 	
+	
+/*	@And("^I validate the details from Manager Hierarchy to VP Level$")  // Click on the View button in Search Result Page
+	public void i_validate_the_details_from_Manager_Hierarchy_to_VP_Level() throws Exception {
+		enduser.validate_ManagerHierarchyToVPLevel();
+	     
+	}*/
+	
 	//Search Tab Validation part for Passive in Search Tab
 	@Then("^I validated \"([^\"]*)\" technology and device type$")   //Selecting Technology Type in Create Form for Inventory
 	public void i_validated_technology_and_device_type(String techType) throws Throwable 
@@ -104,8 +111,24 @@ public class OVValidationStepDefinition {
 	public void i_clicked_on_view_icon_of_search_result_page() throws Exception {
 		Thread.sleep(10000);
 		enduser.select_viewBtn();
-		Thread.sleep(10000);
+		Thread.sleep(30000);
 	     
+	}
+	
+	
+	
+	@And("^I click on view icon of Search Result page on Manage Users page$")  // Click on the View button in Search Result Page
+	public void i_clicked_on_view_icon_of_search_result_page_on_Manage_Users_page() throws Exception {
+		Thread.sleep(10000);
+		enduser.select_viewBtn_on_ManageUserPage();
+		Thread.sleep(30000);
+	     
+	}
+	
+	
+	@Then("^I close the search result$")
+	public void i_close_the_search_result() throws InterruptedException{
+		enduser.closeSearchResult();
 	}
 	
 	@And("^Validate attributes in \"([^\"]*)\" Search page$")  //Validating Attributes present in the Search device page
@@ -198,9 +221,21 @@ public class OVValidationStepDefinition {
 	    
 	}
 	
+	@And("^I validate the route details with \"([^\"]*)\" data$") 
+	public void i_validate_the_route_details(String field) throws Exception {
+		enduser.validateRouteDetail(field);
+	}
+	
+	
 	@Then("I should see the start and end devices$")
 	public void Then_I_should_see_the_start_and_end_devices() throws InterruptedException{
 		enduser.validate_DeviceName();
+	}
+	
+	
+	@Then("I should see the start and end devices in Port Section$")
+	public void i_should_see_the_start_and_end_devices_in_PortSection() throws InterruptedException{
+		enduser.validate_DeviceName_PortSection();
 	}
 	
 	@Then("^I should be in the \"([^\"]*)\" list view page$")
@@ -285,4 +320,62 @@ public class OVValidationStepDefinition {
 		 	enduser.validateservices();
 		} 
 
+	//-------------------------------------ANKIT NEW------------------------------------
+	//TC55726
+	@Then("^I verify the suscriber view$")
+	public void i_verify_the_suscriber_view() throws Throwable {
+		enduser.verifysubscriperdetails();
+	}
+	
+	//TC90359
+	@And("I validate and add a service as \"([^\"]*)\"$")
+	public void validateAndAddService(String service) throws InterruptedException, ClassNotFoundException{
+		enduser.validateAndAddService(service);
+	} 
+	
+	@Then("^I validate \"([^\"]*)\" data in the Service Area Detail Page$")
+	public void i_validate_data_in_the_Service_Area_Detail_Page(String template) throws Throwable {
+		Thread.sleep(3000);
+		enduser.validateServiceAreaDetail(template);
+		Thread.sleep(10000); 
+}
+	
+	@Then("^I validate \"([^\"]*)\" data in the Subscriber Detail Page$")
+	public void i_validate_data_in_the_Subscriber_Detail_Page(String template) throws Throwable {
+		Thread.sleep(3000);
+		enduser.validateSubscriberDetail(template);
+		Thread.sleep(10000);
+	    
+	} 
+	
+	//TC39229
+		@Then("I verify all fields for SLC$")
+		public void verifyFields(){
+			enduser.verifyFieldsForSLC();
+		}
+		
+		//TC39216
+		@And("I verify order detail tab is not editable$")
+		public void verifyorderTabEditable(){
+			enduser.verifyorderTabEditable();
+		} 
+		
+		
+		@Then("I verify Order Note History section displays the same data that user enter in oder notes page$")
+		public void veridyOrderNoteHistory(){
+			enduser.veridyOrderNoteHistory();
+		} 
+		
+		
+		//TC39227
+		@Then("I verify delete button and click$")
+		public void verifyAndClickDelete(){
+			enduser.verifyAndClickDelete();
+		}
+		
+		//TC55687
+		@And("I verify values for HSI$")	
+		public void verifyHSIValue(){
+			enduser.verifyHSIValue();
+		} 
 }

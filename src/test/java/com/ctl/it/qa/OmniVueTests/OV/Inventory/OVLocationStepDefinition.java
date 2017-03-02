@@ -19,4 +19,14 @@ public class OVLocationStepDefinition {
 		actvtnpage.tbx_streetname.sendKeys(Streetname);
 		
 	}
+	
+	@And("^I verify all the field on ovloaction page$")
+	public void i_verify_all_the_field_on_ovloaction_page() throws Throwable {
+		enduser.validateallfield();
+	} 
+	
+	@And("^I enter unique data from \"([^\"]*)\" and \"([^\"]*)\"$")
+	public void i_enter_unique_data_from_and(String arg1, String arg2) throws Throwable {
+		enduser.make_UniqueData(arg1, arg2);
+	} 
 }

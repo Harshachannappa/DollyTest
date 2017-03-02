@@ -4,6 +4,7 @@ import com.ctl.it.qa.omnivue.tools.pages.common.OVActivationPage;
 import com.ctl.it.qa.omnivue.tools.pages.common.OVCreateDevicePage;
 import com.ctl.it.qa.omnivue.tools.steps.user.UserSteps;
 import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import cucumber.api.java.en.And;
 import net.thucydides.core.annotations.Steps;
 
@@ -43,6 +44,31 @@ public class OVSearchStepDefinition {
 		//enduser.click_searchBtn();	    
 	}
 	
+	//Dolly
+/*	@And("^I hover \"([^\"]*)\" under \"([^\"]*)\" menu$")  //Selecting Type & sub-Type in Create form
+	public void hover(String subMenu,String menu) throws InterruptedException {
+	
+		enduser.hover_menuItem(subMenu,menu);
+
+	}*/
+	
+/*	//Dolly
+	@And("^I fill Manage Users details with \"([^\"]*)\" and \"([^\"]*)\" data$") 
+	public void i_fill_Manage_Users_details(String filterBy , String filterText) throws Exception {
+		enduser.fillUserDetails(filterBy , filterText);
+	}*/
+	
+/*	@And("^I click search User button$")  //Create Button Click on Create Form for Inventory, Subscriber
+	public void i_click_SearchUser_button() throws InterruptedException{
+		enduser.click_SearchUser_button();
+		}*/
+	
+/*	@And("^I click on Manage Hierarchy tab under User Search result in Manage Users Page$")  // Click on the View button in Search Result Page
+	public void i_clicked_on_Manage_Hierarchy_tab_under_User_Search_result_in_Manage_Users_Page() throws Exception {
+		enduser.click_tab();
+	     
+	}*/
+	
 	@And("^I Search for ([^\"]*) in Search Tab$")		//Currently used by Order search
 	public void i_searched_for_orders(String field) throws Exception {
 		System.out.println(field);
@@ -52,19 +78,13 @@ public class OVSearchStepDefinition {
 	
 	@And("^I Search for the \"([^\"]*)\" data from Search Tab$") 
 	public void i_searched_for_data(String field) throws Exception {
-		//System.out.println(field+"Advaceorder");
 		enduser.fill_fields(field);
-		//enduser.click_searchBtn();	    
 	}
-	
-	@And("^I click on search button for \"([^\"]*)\"$")			//Search button
-	public void i_clicked_on_INV_search_button(String button) throws Exception 
-	{
+
+	@And("^I click on search button for \"([^\"]*)\"$")
+	public void i_clicked_on_INV_search_button(String button) throws Exception {
 		enduser.click_searchBtn(button);
-		
-		//System.out.println("First stage");
 	}
-	
 
 	@And("^I clicked on Advance Search for \"([^\"]*)\"$")
 	public void i_clicked_on_Adcance_Search_for(String advanced_Search) throws Throwable {
@@ -92,6 +112,17 @@ public class OVSearchStepDefinition {
 		Thread.sleep(10000);
 
 	}
+	
+	//..Ankit........
+	@Then("^I accept the alert button$")
+	public void i_accept_the_alert_button() throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+		enduser.accept_Aletr();
+	}
+
+	
+	
+	
 	
 	
 
@@ -148,6 +179,8 @@ public class OVSearchStepDefinition {
 		enduser.selectport_createtab(Porttype);
 	}
 	
+
+	
 	@And("^I select \"([^\"]*)\" location type$")		//Sairam code merge---21/7/2016--@US48525 @TC53733
 	public void select_locationtype(String locationtype) throws Throwable{
 		enduser.locationtype(locationtype);
@@ -185,6 +218,23 @@ public class OVSearchStepDefinition {
 	}
 	
 	
+	@And("^I click on plus icon to view the Shelf information$") //Fill the Device create form page details
+	public void i_click_on_plus_icon_to_view_the_Shelf_information() throws InterruptedException{
+		enduser.clickedPlusIcon();		
+	}
+	
+	
+	@And("^I verify and click Swap Card button in create expand area$") //Fill the Device create form page details
+	public void i_verify_and_click_Swap_Card_button_in_create_expand_area() throws InterruptedException{
+		enduser.verifyAndClickSwapCardBtn();		
+	}
+	
+	@And("^I verify and select the destination card dropdown as \"([^\"]*)\"$") //Fill the Device create form page details
+	public void i_verify_and_select_the_destination_card_dropdown(String destnCardValue) throws InterruptedException{
+		enduser.verifyAndSelectDestn(destnCardValue);		
+	}
+	
+	
 	
 	/* ******************Network Create Form ************ */
 	
@@ -217,4 +267,75 @@ public class OVSearchStepDefinition {
  	public void i_Select_Device_Role_as_with_Device_Name_as(String devRole, String devName) {
  		enduser.createDeviceRole_Name(devRole,devName);
  	}
+ 
+//-------------------------------------------ANKIT NEW------------------------------------------
+ 	@And("^I Search for the ([^\"]*) data from Search Tab$")
+ 	public void i_Search_for_the_TC_A_data_from_Search_Tab(String arg1) throws Throwable {
+ 	    // Write code here that turns the phrase above into concrete actions
+ 		System.out.println(arg1);
+ 		enduser.fill_fields(arg1);
+ 	} 
+ 	
+ 	@When("^I select \"([^\"]*)\" as Technology type$")
+ 	public void i_select_as_Technology_type(String arg1) throws Throwable {
+ 	    // Write code here that turns the phrase above into concrete actions
+ 		
+ 		enduser.select_rb_ethernet();
+ 		
+ 	}
+ 	
+ 	@When("^Select number type as \"([^\"]*)\"$")
+ 	public void select_number_type_as(String dropdown) throws Throwable {
+ 		enduser.selectValuefromnumbertype(dropdown);
+ 	}
+ 	
+ 	
+ 	//...........Tc55681................................
+ 	@And("I select \"([^\"]*)\" from circuit type$")
+	 public void selectCircuitType(String circuitType){
+		 enduser.selectCircuitType(circuitType);
+	 } 
+ 	
+ 	@And("^I verify \"([^\"]*)\" type and select \"([^\"]*)\"$")
+ 	public void i_verify_type_and_select(String type, String subtype) throws Throwable {
+ 		
+ 		
+ 		enduser.verifyFormType(type, subtype);
+ 	} 
+ 	
+ 	
+ 	@When("^I select \"([^\"]*)\" from Link type$")
+ 	public void i_select_from_Link_type(String arg1) throws Throwable {
+ 		enduser.select_linklType(arg1);
+ 	}
+
+ 	@When("^I verify \"([^\"]*)\" from Link type$")
+ 	public void i_verify_from_Link_type(String arg1) throws Throwable {
+ 		enduser.verify_linkType(arg1);
+ 	} 
+ 	
+ 		@And("^I select \"([^\"]*)\" from Location type$")
+ 	 	public void i_select_from_Location_type(String arg1) throws Throwable {
+ 	 		enduser.select_locationtype(arg1);
+ 	 	}
+
+ 	 	@And("^I verify \"([^\"]*)\" from Location type$")
+ 	 	public void i_verify_from_Location_type(String arg1) throws Throwable {
+ 	 		enduser.verify_locationtype(arg1);
+ 	 	} 
+
+ 		@And("^I click on transport path$")
+ 	 	public void i_click_on_transport_path() throws Throwable {
+ 	 	    // Write code here that turns the phrase above into concrete actions
+ 	 		Thread.sleep(10000);
+ 	 		enduser.click_transportpath();
+ 	 	}
+
+ 	 	@And("^I click on circuit$")
+ 	 	public void i_click_on_circuit() throws Throwable {
+ 	 		Thread.sleep(5000);
+ 	 	    enduser.click_circuit();
+ 	 	}
+
+ 	
 }
