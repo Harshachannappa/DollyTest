@@ -711,6 +711,7 @@ Feature: OSIP Regression cases
     And I click on Create button
     And I click on AuditLog tab
 
+# Sanjay has done the script for this
   @TC55512
   Scenario: Verify the create functionality of Ethernet device type BRIX
     Given I am in omnivue url
